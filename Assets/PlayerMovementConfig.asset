@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82473722ec8b7634db8c10851f99a813, type: 3}
+  m_Name: PlayerMovementConfig
+  m_EditorClassIdentifier: FPSCore.Runtime::FPSCore.PlayerMovementConfig
+  WalkSpeed: 4
+  RunSpeed: 8
+  JumpHeight: 1.2
+  Gravity: -20
+  StickToGroundForce: 5
+  MouseSensitivity: 2
+  MinVerticalAngle: -80
+  MaxVerticalAngle: 80
+  WalkStepInterval: 0.5
+  RunStepInterval: 0.3
+  BobFrequency: 8
+  BobAmplitude: 0.05
+  BobSmoothSpeed: 8
+  RunFov: 65
+  FovKickDuration: 0.2

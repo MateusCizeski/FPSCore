@@ -1,0 +1,19 @@
+{
+  "name": "com.mateuskogl.fpscore",
+  "version": "1.0.0",
+  "displayName": "FPSCore - First Person Movement",
+  "description": "Movimentação e câmera em primeira pessoa, extraídas e refinadas do Standard Assets, para reuso entre projetos.",
+  "unity": "2022.3",
+  "dependencies": {
+    "com.unity.inputsystem": "1.0.0"
+  },
+  "keywords": [
+    "fps",
+    "first-person",
+    "controller",
+    "camera"
+  ],
+  "author": {
+    "name": "Mateus Kogl"
+  }
+}
