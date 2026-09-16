@@ -480,7 +480,7 @@ Transform:
   m_GameObject: {fileID: 210346985}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.94689, y: 0, z: 7.83656}
+  m_LocalPosition: {x: 0.94689, y: 0, z: 1.91}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -578,7 +578,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.53375, y: -0.037999988, z: -15.10181}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -657,7 +657,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: FPSCore.Runtime::FPSCore.CameraHeadBob
   _config: {fileID: 11400000, guid: 4de94e5932c01b941810764fa7269a2a, type: 2}
   _motor: {fileID: 1655981874}
-  _cameraTransform: {fileID: 678012764}
+  _cameraTransform: {fileID: 330585546}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1034,7 +1034,7 @@ Transform:
   m_GameObject: {fileID: 678012763}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.572, y: 0.705, z: 15.008}
+  m_LocalPosition: {x: 0, y: 1.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2370,9 +2370,9 @@ GameObject:
   - component: {fileID: 1655981867}
   - component: {fileID: 1655981871}
   - component: {fileID: 1655981870}
-  - component: {fileID: 1655981869}
   - component: {fileID: 1655981874}
   - component: {fileID: 1655981875}
+  - component: {fileID: 1655981876}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2404,7 +2404,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!4 &1655981868
 Transform:
   m_ObjectHideFlags: 0
@@ -2414,29 +2414,13 @@ Transform:
   m_GameObject: {fileID: 1655981866}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.684, y: 0.896, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 678012764}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1655981869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1655981866}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03ec264efdf7f0c4a95196c8d9324f70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FPSCore.FootstepAudioPlayer
-  _motor: {fileID: 0}
-  _footstepClips: []
-  _jumpClip: {fileID: 0}
-  _landClip: {fileID: 0}
 --- !u!82 &1655981870
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2580,6 +2564,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0614456b6056b584f841d25e831bc067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: FPSCore.Runtime::FPSCore.PlayerInputReader
+--- !u!114 &1655981876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655981866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfafa5fee3a9d284f9b2280ca6487f05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FPSCore.Runtime::FPSCore.FootstepAudioPlayer
+  _motor: {fileID: 0}
+  _footstepClips: []
+  _jumpClip: {fileID: 0}
+  _landClip: {fileID: 0}
 --- !u!1 &1668085276
 GameObject:
   m_ObjectHideFlags: 0
