@@ -17,6 +17,9 @@ namespace FPSCore
     [Tooltip("Layers consideradas 'chão' para projeção de movimento e detecção de piso. Padrão: todas — restrinja se o jogo tiver layers de gatilho/VFX que não devem contar como piso.")]
     [SerializeField] private LayerMask _groundMask = ~0;
 
+    [Tooltip("Janela em que um pulo apertado no ar ainda é aproveitado ao tocar o chão.")]
+    [SerializeField] private float _jumpBufferTime = 0.15f;
+
     public event Action OnFootstep;
     public event Action OnJump;
     public event Action OnLand;
@@ -32,10 +35,16 @@ namespace FPSCore
     private bool _wasGrounded;
     private bool _movementLocked;
     private float _stepTimer;
+    private float _jumpBufferTimer;
 
     private void Awake()
     {
       _controller = GetComponent<CharacterController>();
+    }
+
+    private void Start()
+    {
+      _wasGrounded = _controller.isGrounded;
     }
 
     private void OnEnable()
@@ -50,7 +59,7 @@ namespace FPSCore
 
     private void OnJumpPressed()
     {
-      _queuedJump = true;
+      _jumpBufferTimer = _jumpBufferTime;
     }
 
     /// <summary>
@@ -95,9 +104,9 @@ namespace FPSCore
       // Move relativo à direção que o transform está olhando, não em eixo global.
       Vector3 desiredMove = transform.forward * moveInput.y + transform.right * moveInput.x;
 
-      // Projeta o movimento na normal do chão, pra seguir rampa/terreno irregular
-      // em vez de flutuar ou perder velocidade em superfícies inclinadas.
-      if (Physics.SphereCast(transform.position, _controller.radius, Vector3.down,
+      Vector3 castOrigin = transform.position + _controller.center;
+
+      if (Physics.SphereCast(castOrigin, _controller.radius, Vector3.down,
               out RaycastHit hitInfo, _controller.height / 2f, _groundMask, QueryTriggerInteraction.Ignore))
       {
         desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;
@@ -110,15 +119,13 @@ namespace FPSCore
 
       if (IsGrounded)
       {
-        // Força pequena e constante pra baixo: gruda o personagem no chão
-        // em pequenas irregularidades, evitando "bounce" estranho.
         _moveDirection.y = -_config.StickToGroundForce;
 
-        if (_queuedJump)
+        if (_jumpBufferTimer > 0f)
         {
           float jumpSpeed = Mathf.Sqrt(_config.JumpHeight * -2f * _config.Gravity);
           _moveDirection.y = jumpSpeed;
-          _queuedJump = false;
+          _jumpBufferTimer = 0f;
           OnJump?.Invoke();
         }
       }

@@ -25,6 +25,13 @@ namespace FPSCore
 
     private void OnEnable()
     {
+      if (_motor == null)
+      {
+        Debug.LogError($"[FPSCore] {nameof(FootstepAudioPlayer)} em '{name}' está sem referência de PlayerMotor. Componente desativado.", this);
+        enabled = false;
+        return;
+      }
+
       _motor.OnFootstep += PlayFootstep;
       _motor.OnJump += PlayJump;
       _motor.OnLand += PlayLand;
@@ -32,6 +39,11 @@ namespace FPSCore
 
     private void OnDisable()
     {
+      if (_motor == null)
+      {
+        return;
+      }
+
       _motor.OnFootstep -= PlayFootstep;
       _motor.OnJump -= PlayJump;
       _motor.OnLand -= PlayLand;
